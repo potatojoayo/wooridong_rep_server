@@ -1,0 +1,6 @@
+
+/logs
+/data
+*.pyc 
+.idea
+media/upload/

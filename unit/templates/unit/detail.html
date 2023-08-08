@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+{% block content %}
+    <header class="mb-3 flex items-center">
+        <div class>
+            <img src='{% static "images/icon.png" %}' alt="icon" class="w-10">
+        </div>
+        <div class="ml-2 text-xl font-nanum">
+            우리동대표
+        </div>
+    </header>
+
+    <section>
+        <div class="flex flex-col p-4 rounded-lg border-[1px] border-gray-300 w-fit shadow-sm font-nanum">
+            <div class="mb-1">
+                <i class="fa-duotone fa-building mr-1"></i>
+                {{ villa.name }} {{ building_name }} {{ unit.unit_number }}
+            </div>
+            <div class="text-xl">
+                {{ date }} 관리비 고지서
+            </div>
+        </div>
+    </section>
+
+    <main class="mt-3">
+        {% for unit_fee in unit_fees %}
+            <div class="flex p-5 rounded bg-gray-50 mb-2 justify-between items-center">
+                <div class="">
+                    <i class="fa-duotone fa-coins mr-1"></i>
+                    {{ unit_fee.fee_type.name }}
+                </div>
+                <div>
+                    {{ unit_fee.fee }}원
+                </div>
+            </div>
+        {% endfor %}
+        <div class="h-0 border-t-[1px] my-1">
+        </div>
+        <div class="flex p-3 rounded  justify-between">
+            <div>
+                합계
+            </div>
+            <div>
+                {{ fee_total }}원
+            </div>
+        </div>
+        <div class="flex p-3 rounded  justify-between">
+            <div class="text-lg flex items-center">
+                <div>
+                    결제하실 금액
+                </div>
+            </div>
+            <div class="text-xl underline underline-offset-4 ">
+                {{ price_to_pay }}원
+            </div>
+        </div>
+        <div class="h-0 border-t-[1px] my-2">
+        </div>
+    <div class="p-3 text-lg">
+        입금계좌
+    </div>
+    <div class="bg-gray-50 rounded-lg p-1">
+        <div class="flex p-3 rounded  mb-1 justify-between items-center">
+            <div class="">
+                은행
+            </div>
+            <div class="text-lg">
+                {{villa.bank.name}}
+            </div>
+        </div>
+        <div class="flex p-3 rounded  mb-1 justify-between items-center">
+            <div class="">
+                계좌번호
+            </div>
+            <div class="text-lg">
+                {{villa.bank_account}}
+            </div>
+        </div>
+        <div class="flex p-3 rounded  mb-2 justify-between items-center">
+            <div class="">
+                예금주명
+            </div>
+            <div class="text-lg">
+                {{villa.account_owner}}
+            </div>
+        </div>
+    </div>
+    </main>
+
+    <div class="h-[120px]"></div>
+
+    <footer class="flex flex-col fixed bottom-0 left-0 w-screen bg-gray-100 p-5 h-[120px]">
+        <div class="mx-auto flex flex-col items-start ">
+            <div class="my-1 md:text-md text-sm">
+                Copyright©2023. 블로켓 Corp. All rights reserved
+            </div>
+            <div class="text-xs text-gray-700">사업자등록번호 187-87-02043 | 대표 정원호</div>
+            <div class="text-xs text-gray-700">
+                제주특별자치도 제주시 동광로 7 302호 | 고객센터 1660-2606
+            </div>
+
+            <a href="https://asset.wooridong-rep.net/term_of_use.html" target="_blank"
+               class="text-xs my-1 text-blue-500">
+                서비스 이용약관
+            </a>
+        </div>
+    </footer>
+
+{% endblock %}

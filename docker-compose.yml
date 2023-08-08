@@ -15,11 +15,6 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_HOST_AUTH_METHOD=trust
 
-  #  redis:
-  #    container_name: redis_service
-  #    image: redis
-  #    ports:
-  #      - "6379:6379"
 
   django:
     container_name: django_service
@@ -30,21 +25,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      ### RDS dev
-      #- POSTGRES_NAME=dev
-      #- POSTGRES_USER=blocket
-      #- POSTGRES_PASSWORD=Blocket1!!
-      #- POSTGRES_HOST=wooridong-rep.cyxls0c2nd3p.ap-northeast-2.rds.amazonaws.com
-      #- POSTGRES_PORT=5432
 
-      ### dev server
-      #- POSTGRES_NAME=main
-      #- POSTGRES_USER=blocket
-      #- POSTGRES_PASSWORD=Blocket1!!
-      #- POSTGRES_HOST=postgres
-      #- POSTGRES_PORT=5432
-
-      # local
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -56,23 +37,3 @@ services:
 
     depends_on:
       - "postgres"
-      #- "redis"
-
-
-#  celery:
-#    container_name: celery_service
-#    build: .
-#    command: celery -A tasks worker --loglevel=info
-#    volumes:
-#      - .:/server
-#    environment:
-#      - POSTGRES_NAME=postgres
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=postgres
-#      - POSTGRES_HOST=postgres
-#      - POSTGRES_PORT=5432
-#      - GOOGLE_APPLICATION_CREDENTIALS="/server/wooridong-rep-firebase-adminsdk.json"
-#      - CELERY_BROKER=redis://redis:6379/0
-#    depends_on:
-#      - redis
-#      - django
